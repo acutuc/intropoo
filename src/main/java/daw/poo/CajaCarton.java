@@ -57,4 +57,9 @@ public class CajaCarton {
     public void cerrar(){
         
     }
+
+    @Override
+    public String toString() {
+        return "ancho=" + ancho + " mm, alto=" + alto + " mm, largo=" + largo + " mm, peso=" + peso + " gr";
+    }
 }
