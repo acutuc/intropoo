@@ -1,4 +1,3 @@
-
 package daw.poo.empleado;
 
 /**
@@ -6,6 +5,7 @@ package daw.poo.empleado;
  * @author Gabriel
  */
 public class Empleado {
+
     String nombre;
     String apellidos;
     String NIF;
@@ -26,9 +26,10 @@ public class Empleado {
         this.irpf = irpf;
         this.casado = casado;
         this.numeroHijos = numeroHijos;
-        
+
     }
-    public Empleado (){
+
+    public Empleado() {
         nombre = "Gabriel";
         apellidos = "Allende";
         NIF = "67619234J";
@@ -114,7 +115,73 @@ public class Empleado {
 
     @Override
     public String toString() {
-        return "Empleado \n ---------------------- \n" + "Nombre: " + nombre + "\nApellidos: " + apellidos + "\nNIF: " + NIF + "\nSueldo base: " + sueldoBase + "\nPago por horas extras: " + pagoHoraExtra + "\nHoras extra realizadas: " + horasExtraRealizadas + "\nIRPF: " + irpf + "\nEstado civil: " + casado + "\nCantidad de hijos: " + numeroHijos;
+        return "Empleado \n ---------------------- \n" + "Nombre: " + nombre + "\nApellidos: "
+                + apellidos + "\nNIF: " + NIF + "\nSueldo base: " + sueldoBase + "\nPago por horas extras: "
+                + pagoHoraExtra + "\nHoras extra realizadas: "
+                + horasExtraRealizadas + "\nIRPF: " + irpf + "\nEstado civil: " + casado + "\nCantidad de hijos: " + numeroHijos;
     }
     
+    public String estadoCivil(){
+        String estadoCivil;
+        if (casado) {
+            estadoCivil = "Casado";
+        } else {
+            estadoCivil = "Soltero";
+        }
+        return estadoCivil;
+    }
+
+    //Cálculo del complemento correspondiente a las horas extra realizadas. El valor debe ser devuelto por el método.
+    public double complementoHorasExtras() {
+        double complementoApagar = pagoHoraExtra * horasExtraRealizadas;
+        return complementoApagar;
+    }
+
+    //Cálculo del sueldo bruto. El valor debe ser devuelto por el método. El sueldo bruto es el resultado
+    //del sueldo base más el complemento por las horasextra trabajadas en el mes.
+    public double sueldoBruto() {
+        double sueldoBruto = complementoHorasExtras() + sueldoBase;
+        return sueldoBruto;
+    }
+
+    //Cálculo de las retenciones (IRPF) a partir del tipo, teniendo en cuenta que el porcentaje de retención
+    //que hay que aplicar es el tipo menos 2 puntos si el empleado está casado y menos 1 punto por cada hijo que
+    //tenga; el porcentaje se aplica sobre todo el sueldo bruto.
+    public double retencionTotalIRPF() {
+        int irpfCasado;
+        int irpfTotal;
+        if (casado) {
+            irpfCasado = irpf - 2;
+            irpfTotal = irpfCasado - numeroHijos;
+        } else {
+            irpfTotal = irpf - numeroHijos;
+        }
+        double retencionTotalIRPF = (sueldoBruto() * irpfTotal) / 100;
+        return retencionTotalIRPF;
+    }
+
+    //Cálculo del sueldo neto. El valor debe ser devuelto por el método. El sueldo neto es el bruto menos las retenciones.
+    public double sueldoNeto() {
+        double sueldoNeto = sueldoBruto() - retencionTotalIRPF();
+        return sueldoNeto;
+    }
+
+    //escribirBasicInfo(): visualización en consola de la información básica del empleado: nombre, apellidos,
+    //NIF, estado civil y número de hijos.
+    public void escribirBasicInfo() {
+               
+        System.out.println("Nombre: " + nombre + "\nApellidos: " + apellidos + "\nNIF: " + NIF + "\nEstado civil: " + estadoCivil() + 
+                "\nNúmero de hijos: " + numeroHijos);
+    }
+    
+    //escribirAllInfo(): visualización en consola de toda la información del empleado, esto es, la información básica
+    //más el sueldo base, el complemento por horas extra, el sueldo bruto, la retención de IRPF y el sueldo neto. Intenta
+    //reutilizar código.
+    public void escribirAllInfo(){
+        escribirBasicInfo();
+        System.out.println("Sueldo base: " + sueldoBase + "\nComplemento por horas extra: " + complementoHorasExtras() + 
+                "\nSueldo bruto: " + sueldoBruto() + "\nRetención de IRPF: " + retencionTotalIRPF() + "\nSueldo neto: " + 
+                sueldoNeto());
+    }
+
 }
