@@ -35,7 +35,7 @@ public class Cafetera {
 
     //llenarCafetera(): hace que la cantidad actual sea igual a la capacidad.
     public double llenarCafetera() {
-        return cantidadActual = capacidadMaxima;
+        return this.cantidadActual = this.capacidadMaxima;
     }
 
     /*servirTaza(double cantidadAServir): simula la acción de servir una taza con la capacidad indicada.
