@@ -6,12 +6,17 @@ package daw.poo.canciones;
  * @author Gabriel
  */
 public class Cancion {
-    String titulo = "The Unforgiven";
-    String autor = "Metallica";
+    String titulo;
+    String autor;
 
     public Cancion(String titulo, String autor) {
         this.titulo = titulo;
         this.autor = autor;
+    }
+    
+    public Cancion(){
+        this.titulo = "";
+        this.autor = "";
     }
 
     public String getTitulo() {

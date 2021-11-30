@@ -6,15 +6,15 @@ package daw.poo.empleado;
  */
 public class Empleado {
 
-    String nombre;
-    String apellidos;
-    String NIF;
-    double sueldoBase;
-    double pagoHoraExtra;
-    double horasExtraRealizadas;
-    int irpf;
-    boolean casado;
-    int numeroHijos;
+    private String nombre;
+    private String apellidos;
+    private String NIF;
+    private double sueldoBase;
+    private double pagoHoraExtra;
+    private double horasExtraRealizadas;
+    private int irpf;
+    private boolean casado;
+    private int numeroHijos;
 
     public Empleado(String nombre, String apellidos, String NIF, double sueldoBase, double pagoHoraExtra, double horasExtraRealizadas, int irpf, boolean casado, int numeroHijos) {
         this.nombre = nombre;
@@ -23,6 +23,9 @@ public class Empleado {
         this.sueldoBase = sueldoBase;
         this.pagoHoraExtra = pagoHoraExtra;
         this.horasExtraRealizadas = horasExtraRealizadas;
+        if (irpf <10 || irpf > 20){
+            throw new IllegalArgumentException("Debe introducir un valor válido");
+        }
         this.irpf = irpf;
         this.casado = casado;
         this.numeroHijos = numeroHijos;
@@ -34,8 +37,8 @@ public class Empleado {
         apellidos = "Allende";
         NIF = "67619234J";
         sueldoBase = 4150.50;
-        double pagoHoraExtra = 15.5;
-        double horasExtraRealizadas = 6;
+        pagoHoraExtra = 15.5;
+        horasExtraRealizadas = 6;
         irpf = 8;
         casado = false;
         numeroHijos = 0;
@@ -94,6 +97,9 @@ public class Empleado {
     }
 
     public void setIrpf(int irpf) {
+        if (irpf <10 || irpf > 20){
+            throw new IllegalArgumentException("Debe introducir un valor válido");
+        }
         this.irpf = irpf;
     }
 
@@ -115,15 +121,15 @@ public class Empleado {
 
     @Override
     public String toString() {
-        return "Empleado \n ---------------------- \n" + "Nombre: " + nombre + "\nApellidos: "
-                + apellidos + "\nNIF: " + NIF + "\nSueldo base: " + sueldoBase + "\nPago por horas extras: "
-                + pagoHoraExtra + "\nHoras extra realizadas: "
-                + horasExtraRealizadas + "\nIRPF: " + irpf + "\nEstado civil: " + casado + "\nCantidad de hijos: " + numeroHijos;
+        return "Empleado \n ---------------------- \n" + "Nombre: " + this.nombre + "\nApellidos: "
+                + this.apellidos + "\nNIF: " + this.NIF + "\nSueldo base: " + this.sueldoBase + "\nPago por horas extras: "
+                + this.pagoHoraExtra + "\nHoras extra realizadas: "
+                + this.horasExtraRealizadas + "\nIRPF: " + this.irpf + "\nEstado civil: " + this.casado + "\nCantidad de hijos: " + this.numeroHijos;
     }
     
     public String estadoCivil(){
         String estadoCivil;
-        if (casado) {
+        if (this.casado) {
             estadoCivil = "Casado";
         } else {
             estadoCivil = "Soltero";
@@ -133,14 +139,14 @@ public class Empleado {
 
     //Cálculo del complemento correspondiente a las horas extra realizadas. El valor debe ser devuelto por el método.
     public double complementoHorasExtras() {
-        double complementoApagar = pagoHoraExtra * horasExtraRealizadas;
+        double complementoApagar = this.pagoHoraExtra * this.horasExtraRealizadas;
         return complementoApagar;
     }
 
     //Cálculo del sueldo bruto. El valor debe ser devuelto por el método. El sueldo bruto es el resultado
     //del sueldo base más el complemento por las horasextra trabajadas en el mes.
     public double sueldoBruto() {
-        double sueldoBruto = complementoHorasExtras() + sueldoBase;
+        double sueldoBruto = complementoHorasExtras() + this.sueldoBase;
         return sueldoBruto;
     }
 
@@ -150,11 +156,11 @@ public class Empleado {
     public double retencionTotalIRPF() {
         int irpfCasado;
         int irpfTotal;
-        if (casado) {
-            irpfCasado = irpf - 2;
-            irpfTotal = irpfCasado - numeroHijos;
+        if (this.casado) {
+            irpfCasado = this.irpf - 2;
+            irpfTotal = irpfCasado - this.numeroHijos;
         } else {
-            irpfTotal = irpf - numeroHijos;
+            irpfTotal = this.irpf - this.numeroHijos;
         }
         double retencionTotalIRPF = (sueldoBruto() * irpfTotal) / 100;
         return retencionTotalIRPF;
@@ -170,8 +176,8 @@ public class Empleado {
     //NIF, estado civil y número de hijos.
     public void escribirBasicInfo() {
                
-        System.out.println("Nombre: " + nombre + "\nApellidos: " + apellidos + "\nNIF: " + NIF + "\nEstado civil: " + estadoCivil() + 
-                "\nNúmero de hijos: " + numeroHijos);
+        System.out.println("Nombre: " + this.nombre + "\nApellidos: " + this.apellidos + "\nNIF: " + this.NIF + "\nEstado civil: " + estadoCivil() + 
+                "\nNúmero de hijos: " + this.numeroHijos);
     }
     
     //escribirAllInfo(): visualización en consola de toda la información del empleado, esto es, la información básica
@@ -179,7 +185,7 @@ public class Empleado {
     //reutilizar código.
     public void escribirAllInfo(){
         escribirBasicInfo();
-        System.out.println("Sueldo base: " + sueldoBase + "\nComplemento por horas extra: " + complementoHorasExtras() + 
+        System.out.println("Sueldo base: " + this.sueldoBase + "\nComplemento por horas extra: " + complementoHorasExtras() + 
                 "\nSueldo bruto: " + sueldoBruto() + "\nRetención de IRPF: " + retencionTotalIRPF() + "\nSueldo neto: " + 
                 sueldoNeto());
     }
