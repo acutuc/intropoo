@@ -17,8 +17,8 @@ public class PuntoGeometrico {
     private double coordenadaX;
     
     public PuntoGeometrico(){
-        this.coordenadaX = 10;
-        this.coordenadaY = -5;
+        this.coordenadaX = 0;
+        this.coordenadaY = 0;
     }
     
     public PuntoGeometrico(double x, double y){
