@@ -14,7 +14,10 @@ public class PruebaNIF {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        NIF nif1 = new NIF("66666666");
+        System.out.println(nif1);
+        NIF nif2 = new NIF("53258602");
+        System.out.println(nif2);
     }
     
 }

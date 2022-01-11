@@ -1,4 +1,4 @@
-package ej9relacionc;
+package daw.poo.nif;
 
 /**
  *
@@ -43,6 +43,7 @@ DNI. Además prueba el contador de instancias.*/
 public class NIF {
     private String numeroDNI;
     private char letraDNI;
+    private int contador;
 
     public NIF(String numeroDNI) {
         this.numeroDNI = numeroDNI;
@@ -51,8 +52,35 @@ public class NIF {
     
     private char generarLetraDNI() {
         char letraGenerada = 0;
+        String cadenaLetras = "TRWAGMYFPDXBNJZSQVHLCKE";
+        int intNumeroDNI = Integer.parseInt(this.numeroDNI);
+        letraGenerada = cadenaLetras.charAt(intNumeroDNI % 23);
         return letraGenerada;
     }
+
+    public String getNumeroDNI() {
+        return numeroDNI;
+    }
+
+    public char getLetraDNI() {
+        return letraDNI;
+    }
+
+
+    public int getContador() {
+        this.contador = 1;
+        this.contador++;
+        return this.contador;
+        
+       
+    }
+
+    @Override
+    public String toString() {
+        return (numeroDNI + "-" + letraDNI + "\n" + "Contador: " + contador);
+    }
+    
+    
     
 }
 
