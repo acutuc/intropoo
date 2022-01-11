@@ -26,14 +26,30 @@ public class Linea {
     /*Linea(Punto A, Punto B) - Constructor parametrizado
     Constructor que recibe como parámetros dos objetos de la clase PuntoGeometrico, que son utilizados para inicializar los atributos.*/
     public Linea(double a, double b){
-        PuntoGeometrico p1 = new PuntoGeometrico();
-        PuntoGeometrico p2 = new PuntoGeometrico();
+        this.puntoA = puntoA;
+        this.puntoB = puntoB;
     }
 
+    public PuntoGeometrico getPuntoA() {
+        return puntoA;
+    }
+
+    public void setPuntoA(PuntoGeometrico puntoA) {
+        this.puntoA = puntoA;
+    }
+
+    public PuntoGeometrico getPuntoB() {
+        return puntoB;
+    }
+
+    public void setPuntoB(PuntoGeometrico puntoB) {
+        this.puntoB = puntoB;
+    }
+    
     //mueveDerecha(double x)
     //Desplaza la línea a la derecha a la distancia que se indique.
     public void mueveDerecha (double x){
-        this.puntoA
+        this.puntoA.setCoordenadaX(this.puntoA.getCoordenadaX()+x);
         
     }
 
