@@ -43,11 +43,12 @@ DNI. Además prueba el contador de instancias.*/
 public class NIF {
     private String numeroDNI;
     private char letraDNI;
-    private int contador;
+    private static int contadorDeInstancias;
 
     public NIF(String numeroDNI) {
         this.numeroDNI = numeroDNI;
         this.letraDNI = generarLetraDNI();
+        contadorDeInstancias++;
     }
     
     private char generarLetraDNI() {
@@ -68,16 +69,14 @@ public class NIF {
 
 
     public int getContador() {
-        this.contador = 1;
-        this.contador++;
-        return this.contador;
+        return this.contadorDeInstancias;
         
        
     }
 
     @Override
     public String toString() {
-        return (numeroDNI + "-" + letraDNI + "\n" + "Contador: " + contador);
+        return (numeroDNI + "-" + letraDNI + "\n" + "Contador: " + contadorDeInstancias);
     }
     
     
