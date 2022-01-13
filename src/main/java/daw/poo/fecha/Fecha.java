@@ -1,6 +1,18 @@
 package daw.poo.fecha;
 
+// Clase para tratar fechas (sólo día, mes y año)
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+// Enumerado para los meses del año (Enero, ...)
+import java.time.Month;
+import java.time.MonthDay;
+import java.time.Period;
+import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
+import java.time.format.TextStyle;
+import java.time.temporal.ChronoUnit;
+import java.util.Locale;
 
 /**
  *
@@ -66,20 +78,28 @@ public class Fecha {
     
     //Constructor predeterminado con la fecha descrita en el enunciado.
     public Fecha(){
+        LocalDate fecha = LocalDate.of(anio, mes, dia);
         this.dia = 1;
         this.mes = 1;
         this.anio = 2022;
     }
     
-    //Constructor parametrizado.
+    //Constructor parametrizado. Se debe comprobar que los parámetros introducidos proporcionan una fecha válida.
+    //En caso contrario, se lanzará una excepción de tipo IllegalArgument.
     public Fecha(int dia, int mes, int anio) {
+        try{
+        LocalDate fecha = LocalDate.of(dia, mes, anio);
         this.dia = dia;
         this.mes = mes;
-        this.anio = anio;
+        this.anio = anio;              
+        }
+        catch(Exception ime){
+            System.out.println("IllegalArgument");
+        }
         
-        if(this.dia)
     }
 
+    //Métodos get y set. Los métodos set deben tener en cuenta las restricciones lógicas y además que la nueva fecha sea válida.
     public int getDia() {
         return dia;
     }
@@ -104,8 +124,28 @@ public class Fecha {
         this.anio = anio;
     }
     
-    public void comprobarFecha(int dia, int mes, int anio){
+    //comprobarFecha(int dia, int mes, int anio): comprobará si los parámetros son válidos para crear una nueva fecha.
+    //Este método se debe usar en el constructor parametrizado.
+    public boolean comprobarFecha(int dia, int mes, int anio){
+        boolean diaBien;
+        boolean mesBien;
+        boolean anioBien;
         
+        mesBien = mes >= 1 && mes <= 12;
+        if (mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes == 8 || mes == 10 || mes == 12){
+             diaBien = dia > 0 && dia <= 31;
+        } else{
+            System.out.println("Este mes tiene 31 días.");
+        }
+        
+        if (mes == 2){
+            diaBien = dia > 0 && dia 
+        }
+        anioBien = anio >= 0;
+    }
+    
+    public boolean bisiesto(LocalDate bisiesto){
+        return bisiesto.isLeapYear();
     }
     
       
