@@ -1,6 +1,7 @@
 package daw.poo.fecha;
 
 // Clase para tratar fechas (sólo día, mes y año)
+import java.time.DateTimeException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -93,8 +94,8 @@ public class Fecha {
         this.mes = mes;
         this.anio = anio;              
         }
-        catch(Exception ime){
-            System.out.println("IllegalArgument");
+        catch(DateTimeException dte){
+            System.out.println("DateTime");
         }
         
     }
@@ -145,6 +146,7 @@ public class Fecha {
     }
     
     public boolean bisiesto(LocalDate bisiesto){
+        // return (anio % 4 == 0 || anio % 100 == 0 || anio % 400 == 0);
         return bisiesto.isLeapYear();
     }
     
